@@ -17,3 +17,6 @@
 *.zip
 *.tar.gz
 *.rar
+
+# eclipse crap
+.recommenders/
