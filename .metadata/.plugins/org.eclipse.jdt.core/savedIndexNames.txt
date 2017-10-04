@@ -1,5 +1,0 @@
-INDEX VERSION 1.130+/Users/mmusante/Documents/eclipse-workspace/.metadata/.plugins/org.eclipse.jdt.core
-3409181066.index
-736200862.index
-541612336.index
-2363838878.index

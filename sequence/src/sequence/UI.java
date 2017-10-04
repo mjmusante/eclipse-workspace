@@ -1,5 +1,7 @@
 package sequence;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -28,6 +30,22 @@ public class UI extends GBFrame {
 	
 	public UI() {
 		mainWin.setEditable(false);
+		
+		inputField.addKeyListener(new KeyListener() {
+			@Override
+			public void keyPressed(KeyEvent ke) {
+				if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+					getSequence();
+					outputResult();
+				}
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent ke) {}
+			
+			@Override
+			public void keyTyped(KeyEvent ke) {}
+		});
 	}
 	
 	private void outputResult() {
@@ -62,6 +80,7 @@ public class UI extends GBFrame {
 			}
 		}
 		mainWin.setText(output);
+		inputField.requestFocus();
 	}
 	
 	public void reset() {
@@ -90,14 +109,18 @@ public class UI extends GBFrame {
 		if (b == exitButton) {
 			System.exit(0);
 		} else if (b == inputButton) {
-			scanSequence(inputField.getText());
-			inputField.setText("");
+			getSequence();
 		} else if (b == resetButton) {
 			reset();
 		} else if (b == outputButton) {
 			curResult = curSeq.longest();
 		}
 		outputResult();
+	}
+
+	private void getSequence() {
+		scanSequence(inputField.getText());
+		inputField.setText("");
 	}
 	
 	public static void main(String[] argv) {
@@ -109,5 +132,6 @@ public class UI extends GBFrame {
 		frm.setTitle("Longest Sequence");
 		frm.setSize(800, 600);
 		frm.setVisible(true);
+		frm.inputField.requestFocus();
 	}
 }

@@ -145,6 +145,4 @@ public class Sequencer {
 		assert(baz.get(0).get().get(3) == 13);
 		System.out.println("d");
 	}
-	
-
 }
