@@ -74,8 +74,7 @@ public class UI extends GBFrame {
 			if (curResult.size() == 0) {
 				output = output + "<none>";
 			} else {
-				for (int i = 0; i < curResult.size(); i++) {
-					Sequencer seq = curResult.get(i);
+				for (Sequencer seq : curResult) {
 					output = output + seq.prettyPrint() + " ";
 				}
 			}
