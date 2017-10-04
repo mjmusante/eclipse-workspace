@@ -3,6 +3,7 @@ package sequence;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.StringJoiner;
 
 public class Sequencer {
 	
@@ -75,18 +76,13 @@ public class Sequencer {
 	}
 	
 	public String prettyPrint() {
-		StringBuffer buf = new StringBuffer();
+		StringJoiner join = new StringJoiner(", ");
 		
-		buf.append("{");
-		for (int i = 0; i < array.size(); i++) {
-			buf.append(array.get(i));
-			if (i + 1 == array.size()) {
-				buf.append("}");
-			} else {
-				buf.append(", ");
-			}
+		for (int i : array) {
+			join.add("" + i);
 		}
-		return buf.toString();
+		
+		return "{" + join.toString() + "}";
 	}
 	
 	public static void main(String[] argv) {
@@ -95,11 +91,13 @@ public class Sequencer {
 		// test 1: empty
 		assert(foo.get().size() == 0);
 		assert(foo.longest().size() == 0);
+		assert(foo.prettyPrint().equals("{}"));
 		System.out.println("a");	
 		
 		// test 1a: one element
 		foo.add(Arrays.asList(1));
 		assert(foo.longest().size() == 0);
+		assert(foo.prettyPrint().equals("{1}"));
 		System.out.println("a1");	
 		
 		// test 2: add some entries and ensure they're there
@@ -109,6 +107,7 @@ public class Sequencer {
 		assert(bar.get(1) == 2);
 		assert(bar.get(2) == 3);
 		assert(foo.longest().size() == 1);
+		assert(foo.prettyPrint().equals("{1, 2, 3}"));
 		List<Sequencer> baz = foo.longest();
 		for (Sequencer seq : baz) {
 			assert(seq.get().get(0) == 1);
@@ -126,6 +125,7 @@ public class Sequencer {
 		assert(bar.get(3) == 2);
 		assert(bar.get(4) == 3);
 		assert(bar.get(5) == 4);
+		assert(foo.prettyPrint().equals("{1, 2, 3, 2, 3, 4}"));
 		assert(foo.longest().size() == 2);
 		baz = foo.longest();
 		assert(baz.get(0).get().get(0) == 1);
@@ -138,6 +138,7 @@ public class Sequencer {
 		
 		// test 4: add a longer sequence and ensure only it is returned
 		foo.add(Arrays.asList(3, 11, 12, 13));
+		assert(foo.prettyPrint().equals("{1, 2, 3, 2, 3, 4, 3, 11, 12, 13}"));
 		baz = foo.longest();
 		assert(baz.size() == 1);
 		assert(baz.get(0).size() == 4);
