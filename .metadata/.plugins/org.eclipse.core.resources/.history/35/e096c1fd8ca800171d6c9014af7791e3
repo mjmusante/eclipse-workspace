@@ -1,0 +1,90 @@
+package sequence;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Sequencer {
+	
+	ArrayList<Integer> array;
+	
+	public Sequencer() {
+		array = new ArrayList<Integer>();
+	}
+	
+	public Sequencer(List<Integer> list) {
+		array = new ArrayList<Integer>();
+		array.addAll(list);
+	}
+	
+	public void add(List<Integer> ary) {
+		array.addAll(ary);
+	}
+	
+	public List<Integer> get() {
+		return array;
+	}
+	
+	public void reset() {
+		array = new ArrayList<Integer>();
+	}
+	
+	public List<Sequencer> longest() {
+		List<Sequencer> result = new ArrayList<Sequencer>();
+	
+		int start = -1;
+		int last = 0;
+		List<Integer> intlist = new ArrayList<Integer>();
+		for (int pos = 0; pos < array.size(); pos++) {
+			int cur = array.get(pos);
+			if (start < 0) {
+				last = cur;
+				start = pos;
+				intlist.add(cur);
+			} else if (last < cur) {
+				intlist.add(cur);
+				last = cur;
+			} else {
+				if (intlist.size() > 1) {
+					result.add(new Sequencer(intlist));
+				}
+				intlist = new ArrayList<Integer>();
+				start = -1;
+			}
+		}
+		return result;
+	}
+	
+	public static void main(String[] argv) {
+		Sequencer foo = new Sequencer();
+		
+		// test 1: empty
+		assert(foo.get().size() == 0);
+		assert(foo.longest().size() == 0);
+		System.out.println("a");		
+		
+		// test 2: add some entries and ensure they're there
+		foo.add(Arrays.asList(1, 2, 3));
+		List<Integer> bar = foo.get();
+		assert(bar.get(0) == 1);
+		assert(bar.get(1) == 2);
+		assert(bar.get(2) == 3);
+		assert(foo.longest().size() == 1);
+		System.out.println("b");
+		
+		// test 3: add some more entries and ensure they're all in there
+		foo.add(Arrays.asList(2, 3, 4));
+		bar = foo.get();
+		assert(bar.get(0) == 1);
+		assert(bar.get(1) == 2);
+		assert(bar.get(2) == 3);
+		assert(bar.get(3) == 2);
+		assert(bar.get(4) == 3);
+		assert(bar.get(5) == 4);
+		assert(foo.longest().size() == 2);
+		System.out.println("c");
+		
+	}
+	
+
+}

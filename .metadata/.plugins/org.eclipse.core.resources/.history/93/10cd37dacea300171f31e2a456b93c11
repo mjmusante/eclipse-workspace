@@ -1,0 +1,43 @@
+package com.oracle.storage.MSVis;
+
+import java.awt.Canvas;
+import java.awt.Graphics;
+
+import javax.swing.JFrame;
+
+class PixelCanvas extends Canvas {
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+	}
+}
+
+public class MSVis {
+	
+	JFrame frame;
+	PixelCanvas disp;
+	
+	
+	public MSVis() {
+		this.frame = new JFrame();
+		this.disp = new PixelCanvas();
+		
+		frame.setSize(640,  480);
+		frame.add(disp);
+		
+		frame.setVisible(true);
+	}
+	
+	public void go() {
+		
+	}
+	
+	
+	
+	public static void main(String[] argv) {
+		MSVis v = new MSVis();
+		
+		v.go();
+	}
+
+}

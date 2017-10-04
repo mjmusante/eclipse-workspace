@@ -1,0 +1,25 @@
+package sequence;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import BreezySwing.GBFrame;
+
+public class UI extends GBFrame {
+	
+	JTextArea mainWin = addTextArea("", 1, 1, 5, 7);
+	JButton inputButton = addButton("Input", 8, 4, 1, 1);
+	JButton outputButton = addButton("Output", 9, 2, 1, 1);
+	JButton resetButton = addButton("Reset", 9, 3, 1, 1);
+	JButton exitButton = addButton("Exit", 9, 4, 1, 1);
+	JTextField inputField = addTextField("", 8, 2, 2, 1);
+
+	public static void main(String[] argv) {
+		JFrame frm = new UI();
+		frm.setTitle("Longest Sequence");
+		frm.setSize(800, 600);
+		frm.setVisible(true);
+	}
+}

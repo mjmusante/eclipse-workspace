@@ -1,0 +1,23 @@
+package com.oracle.storage.MSVis;
+
+import javax.swing.JFrame;
+
+public class MSVis {
+	
+	JFrame frame;
+
+	public MSVis() {
+		this.frame = new JFrame();
+		
+		frame.setVisible(true);
+	}
+	
+	
+	
+	public static void main(String[] argv) {
+		MSVis v = new MSVis();
+		
+
+	}
+
+}
