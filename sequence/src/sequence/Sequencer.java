@@ -54,13 +54,12 @@ public class Sequencer {
 			return result;
 
 		// prep the loop with the first entry in the array
-		int last = array.get(0);
+		int last = array.get(0) + 1;
 		List<Integer> intlist = new ArrayList<Integer>();
-		intlist.add(last);
 
 		// loop over the remaining entries and find the longest lists
 		for (int cur : array) {
-			if (last >= cur) {
+			if (last > cur) {
 				if (intlist.size() > 1) {
 					checkAndAdd(result, intlist);
 				}
