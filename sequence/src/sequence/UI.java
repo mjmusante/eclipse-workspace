@@ -2,7 +2,6 @@ package sequence;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -24,7 +23,7 @@ public class UI extends GBFrame {
 	JButton exitButton = addButton("Exit", 9, 4, 1, 1);
 
 	Sequencer curSeq = new Sequencer();
-	List<Sequencer> curResult = null;
+	Sequencer[] curResult = null;
 	String errMsg = null;
 
 	public UI() {
@@ -66,12 +65,12 @@ public class UI extends GBFrame {
 
 		if (curResult != null) {
 			output = output + "\n\nLongest sequence";
-			if (curResult.size() > 1) {
+			if (curResult.length > 1) {
 				output = output + "s";
 			}
 			output = output + ": ";
 
-			if (curResult.size() == 0) {
+			if (curResult.length == 0) {
 				output = output + "<none>";
 			} else {
 				for (Sequencer seq : curResult) {
@@ -112,7 +111,7 @@ public class UI extends GBFrame {
 		} else if (b == resetButton) {
 			reset();
 		} else if (b == outputButton) {
-			curResult = curSeq.longest();
+			curResult = curSeq.findLongestList();
 		}
 		outputResult();
 	}
