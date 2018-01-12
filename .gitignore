@@ -21,3 +21,5 @@
 # eclipse crap
 .recommenders/
 .metadata/
+
+.DS_Store
